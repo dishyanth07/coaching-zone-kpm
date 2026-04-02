@@ -238,6 +238,7 @@ h1, h2, h3, h4 {
   min-height: 850px;
   display: flex;
   align-items: center;
+  padding-top: 80px; /* Added padding to clear high-end navbar */
   overflow: hidden;
   background: var(--background);
 }
