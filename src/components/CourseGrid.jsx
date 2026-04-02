@@ -1,94 +1,98 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { 
-  BookOpen, 
   Languages, 
+  Binary, 
   PenTool, 
-  Type, 
-  Activity, 
-  Calculator, 
-  UserCheck, 
-  Speech 
+  MessageSquare, 
+  GraduationCap, 
+  ChevronRight,
+  BookOpen
 } from 'lucide-react';
 
 const courses = [
-  { 
-    title: 'Tamil Phonics', 
-    icon: BookOpen, 
-    desc: 'Master Tamil language basics through scientific phonics.', 
-    color: 'var(--primary)' 
+  {
+    id: 'tamil-phonics',
+    title: 'Tamil Phonics',
+    count: 'Level 1-3',
+    icon: Languages,
+    desc: 'Scientific approach to Tamil reading and pronunciation.'
   },
-  { 
-    title: 'English Phonics', 
-    icon: Languages, 
-    desc: 'Advanced English reading and pronunciation skills.', 
-    color: 'var(--secondary)' 
+  {
+    id: 'english-phonics',
+    title: 'English Phonics',
+    count: 'Standard/Advanced',
+    icon: BookOpen,
+    desc: 'Master 44 sounds and blending for fluent English reading.'
   },
-  { 
-    title: 'Tamil Handwriting', 
-    icon: PenTool, 
-    desc: 'Artistic and legible Tamil script practice techniques.', 
-    color: 'var(--accent)' 
+  {
+    id: 'hindi-phonics',
+    title: 'Hindi Phonics',
+    count: 'Basics+',
+    icon: MessageSquare,
+    desc: 'Simplified Hindi learning for non-native speakers.'
   },
-  { 
-    title: 'English Handwriting', 
-    icon: Type, 
-    desc: 'Cursive and print handwriting perfection for students.', 
-    color: 'var(--primary)' 
+  {
+    id: 'abacus',
+    title: 'Abacus Math',
+    count: '8 Levels',
+    icon: Binary,
+    desc: 'Boost mental calculation speed and brain development.'
   },
-  { 
-    title: 'Hindi Phonics', 
-    icon: Activity, 
-    desc: 'The complete guide to Hindi pronunciation and reading.', 
-    color: 'var(--secondary)' 
+  {
+    id: 'handwriting',
+    title: 'Handwriting',
+    count: 'Tamil/English',
+    icon: PenTool,
+    desc: 'Correcting posture, grip, and penmanship technique.'
   },
-  { 
-    title: 'Grammar & Spoken English', 
-    icon: Speech, 
-    desc: 'Build confidence in communication and grammar.', 
-    color: 'var(--accent)' 
+  {
+    id: 'spoken-english',
+    title: 'Spoken English',
+    count: 'A1-C2',
+    icon: MessageSquare,
+    desc: 'Total confidence in communication and grammar.'
   },
-  { 
-    title: 'Abacus', 
-    icon: Calculator, 
-    desc: 'Boost mental math speed and brain development.', 
-    color: 'var(--primary)' 
-  },
-  { 
-    title: 'Teacher Training', 
-    icon: UserCheck, 
-    desc: 'Professional certification for aspiring educators.', 
-    color: 'var(--secondary)' 
-  },
+  {
+    id: 'teacher-training',
+    title: 'Teacher Training',
+    count: 'Certified',
+    icon: GraduationCap,
+    desc: 'Become a certified Phonics, Abacus or Handwriting coach.'
+  }
 ];
 
-const CourseCard = ({ course }) => (
-  <div className="course-card reveal-on-scroll">
-    <div className="card-glow"></div>
-    <div className="card-content">
-      <div className="course-icon" style={{ backgroundColor: `${course.color}15`, color: course.color }}>
-        <course.icon size={28} />
+const CourseCard = ({ id, icon: Icon, title, count, desc }) => (
+  <Link to={`/course/${id}`} className="course-card glass-card reveal-on-scroll">
+    <div className="card-accent" />
+    <div className="card-header">
+      <div className="icon-box">
+        <Icon size={24} />
       </div>
-      <h3>{course.title}</h3>
-      <p>{course.desc}</p>
-      <div className="card-footer">
-        <span className="learn-more">Learn More →</span>
-      </div>
+      <span className="course-count">{count}</span>
     </div>
-  </div>
+    <h3>{title}</h3>
+    <p>{desc}</p>
+    <div className="card-footer">
+      <span className="learn-more">Learn More</span>
+      <ChevronRight size={16} />
+    </div>
+  </Link>
 );
 
 const CourseGrid = () => {
   return (
-    <section id="courses" className="course-section">
+    <section id="courses" className="course-grid-section">
       <div className="container">
         <div className="section-header reveal-on-scroll">
-          <span className="subtitle">Exploration</span>
-          <h2>Our Specialized <span className="gradient-text">Learning Paths</span></h2>
-          <p>Carefully crafted courses designed to unlock every student's potential.</p>
+          <span className="badge">Our Programs</span>
+          <h2>Specialized Learning <span className="gradient-text">Paths</span></h2>
+          <p>From primary literacy to advanced mental math, we offer structured curriculum for every student.</p>
         </div>
-        <div className="course-grid">
-          {courses.map((course, i) => (
-            <CourseCard key={i} course={course} />
+        
+        <div className="courses-grid">
+          {courses.map((course) => (
+            <CourseCard key={course.id} {...course} />
           ))}
         </div>
       </div>

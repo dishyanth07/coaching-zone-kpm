@@ -1,16 +1,17 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import logo from '../assets/logo.png';
-import { Layout, Globe, Instagram, Send, Mail } from 'lucide-react';
+import { Globe, Instagram, Send, Mail } from 'lucide-react';
 
 const Footer = () => {
   return (
     <footer className="footer">
       <div className="container footer-content">
         <div className="footer-brand">
-          <div className="logo">
+          <Link to="/" className="logo">
             <img src={logo} alt="Coaching Zone" className="logo-img" />
             <span>Coaching Zone Kanchipuram</span>
-          </div>
+          </Link>
           <p>ISO & MSME Certified Excellence. Redefining education through a smart, systematic approach to student learning in Kanchipuram.</p>
           <div className="social-links">
             <a href="https://www.facebook.com/coaching_zone_kpm" target="_blank" rel="noreferrer"><Send size={20} /></a>
@@ -23,16 +24,16 @@ const Footer = () => {
         <div className="footer-links">
           <div className="link-group">
             <h5>Courses</h5>
-            <a href="#">Tamil Phonics</a>
-            <a href="#">English Phonics</a>
-            <a href="#">Abacus</a>
-            <a href="#">Handwriting</a>
+            <Link to="/course/tamil-phonics">Tamil Phonics</Link>
+            <Link to="/course/english-phonics">English Phonics</Link>
+            <Link to="/course/abacus">Abacus</Link>
+            <Link to="/course/handwriting">Handwriting</Link>
           </div>
           <div className="link-group">
             <h5>The Platform</h5>
-            <a href="#">Student Tracking</a>
-            <a href="#">Parent Portal</a>
-            <a href="#">Fee Management</a>
+            <Link to="/">Student Tracking</Link>
+            <Link to="/">Parent Portal</Link>
+            <Link to="/">Fee Management</Link>
           </div>
           <div className="link-group">
             <h5>Contact</h5>
