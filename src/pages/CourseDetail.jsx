@@ -10,6 +10,7 @@ import {
   Calendar,
   Users
 } from 'lucide-react';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 
 const courseDetails = {
   'tamil-phonics': {
@@ -80,6 +81,7 @@ const courseDetails = {
 const CourseDetail = () => {
   const { slug } = useParams();
   const course = courseDetails[slug];
+  useScrollReveal();
 
   useEffect(() => {
     window.scrollTo(0, 0);
