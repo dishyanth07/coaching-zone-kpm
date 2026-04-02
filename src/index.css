@@ -1,18 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap');
 
 :root {
   --primary: #0d5c63;         /* Deep Teal - Professional & Trustworthy */
   --primary-glow: rgba(13, 92, 99, 0.4);
   --secondary: #c5a059;       /* Luxury Gold - Success & Excellence */
   --accent: #ca8a04;          /* Bright Gold - CTA & Action */
-  --background: #fbfbfc;      /* Clean neutral with teal hint */
-  --surface: rgba(255, 255, 256, 0.85);
+  --background: #ffffff;      /* Clean White for Besant-style scale */
+  --surface: rgba(255, 255, 255, 0.95);
   --text-main: #0f2425;       /* Dark teal-shifted slate */
-  --text-muted: #475a5b;      /* Muted teal-shifted slate */
-  --glass-border: rgba(255, 255, 255, 0.3);
+  --text-muted: #64748b;      /* Muted slate for high-density and readable */
+  --glass-border: rgba(13, 92, 99, 0.1);
   --shadow-soft: 0 10px 40px -10px rgba(0, 0, 0, 0.05);
   --shadow-medium: 0 20px 60px -15px rgba(13, 92, 99, 0.1);
-  --shadow-premium: 0 30px 100px -20px rgba(13, 92, 99, 0.2), 0 15px 40px -15px rgba(0, 0, 0, 0.15);
+  --shadow-premium: 0 30px 100px -20px rgba(13, 92, 99, 0.15), 0 15px 40px -15px rgba(0, 0, 0, 0.1);
   --radius-xl: 40px;
   --radius-lg: 28px;
   --transition-premium: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -34,8 +38,9 @@ body {
 
 h1, h2, h3, h4 {
   font-family: 'Outfit', sans-serif;
-  font-weight: 700;
+  font-weight: 800;
   line-height: 1.1;
+  letter-spacing: -0.025em;
 }
 
 /* Animations */
