@@ -639,48 +639,40 @@ h1, h2, h3, h4 {
   transform: scale(1.1) rotate(10deg);
 }
 
-/* Responsive Adjustments (RE-ADDED) */
+/* Mobile Responsive Adjustments (ULTRA-POLISHED) */
 @media (max-width: 992px) {
-  .footer-content {
-    grid-template-columns: 1fr;
-    gap: 4rem;
-    text-align: center;
-  }
-  .footer-brand {
-    margin: 0 auto;
-  }
-  .social-links {
-    justify-content: center;
-  }
-  .footer-links {
-    grid-template-columns: 1fr;
-    gap: 3rem;
-  }
-  .cta-info {
-    flex-direction: column;
-    gap: 3rem;
-    align-items: center;
-  }
-  .system-section h2 { font-size: 3rem; }
-  .cta-section h2 { font-size: 2.8rem; }
+  .footer-content { grid-template-columns: 1fr; gap: 4rem; text-align: center; }
+  .footer-brand { margin: 0 auto; }
+  .social-links { justify-content: center; }
+  .footer-links { grid-template-columns: 1fr; gap: 4rem; text-align: center; }
+  .link-group { text-align: center; }
+  .link-group h5 { margin-bottom: 1.5rem; }
+  
+  .features-grid-why { grid-template-columns: 1fr; gap: 1.5rem; }
+  .feature-item { padding: 2.5rem; flex-direction: column; align-items: center; text-align: center; }
+  
+  .cta-info { flex-direction: column; gap: 3.5rem; align-items: center; }
+  .system-section h2 { font-size: 2.5rem; }
+  .cta-section h2 { font-size: 2.4rem; }
 }
 
 @media (max-width: 768px) {
   .stats-section, .course-section, .system-section, .why-section, .cta-section {
-    padding: 60px 0;
+    padding: 70px 0;
   }
-  .dashboard-3d { transform: none !important; }
-  .logo span { font-size: 1.1rem; }
+  .dashboard-3d { transform: none !important; opacity: 1 !important; }
+  .logo span { font-size: 1rem; }
 }
 
 @media (max-width: 480px) {
   .logo span { font-size: 0.85rem; letter-spacing: -0.5px; }
-  .hero h1 { font-size: 2.6rem; letter-spacing: -1px; }
-  .hero p { font-size: 1.1rem; }
+  .hero h1 { font-size: 2.2rem; letter-spacing: -1px; }
+  .hero p { font-size: 1rem; }
   .whatsapp-float {
     bottom: 1.5rem;
     right: 1.5rem;
-    width: 56px;
-    height: 56px;
+    width: 60px;
+    height: 60px;
   }
 }
+
