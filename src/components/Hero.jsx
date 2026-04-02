@@ -1,39 +1,36 @@
 import React, { useEffect } from 'react';
-import heroBg from '../assets/hero-bg.png';
 import { ChevronRight, MessageCircle } from 'lucide-react';
 
 const Hero = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
-      document.querySelector('.hero-content').classList.add('visible');
+      const heroContent = document.querySelector('.hero-content');
+      if (heroContent) heroContent.classList.add('visible');
     }, 100);
     return () => clearTimeout(timer);
   }, []);
 
   return (
     <section className="hero">
-      <div className="hero-overlay"></div>
-      <div className="hero-particles">
-        {[...Array(20)].map((_, i) => (
-          <div key={i} className="particle" style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-            animationDelay: `${Math.random() * 5}s`,
-            animationDuration: `${5 + Math.random() * 10}s`
-          }}></div>
-        ))}
+      {/* Dynamic Fluid Background Layer */}
+      <div className="hero-fluid-bg">
+        <div className="fluid-blob b1"></div>
+        <div className="fluid-blob b2"></div>
+        <div className="fluid-blob b3"></div>
       </div>
+
+      <div className="hero-overlay"></div>
       
       <div className="container hero-container">
         <div className="hero-content">
           <span className="badge">Next Generation Learning</span>
           <h1>Personalized Learning <br/><span className="gradient-text">For Every Student</span></h1>
           <p>
-            Structured learning, better results, and complete student progress tracking in one powerful system. 
-            Experience the "Zone" difference today.
+            Tamil, English, Hindi, Phonics, Handwriting, Abacus & Spoken English. 
+            Structured learning, better results, and complete student tracking.
           </p>
           <div className="hero-cta">
-            <a href="https://wa.me/message/MPG3QK4G2ZQ2M1" className="btn btn-primary">
+            <a href="https://wa.me/message/MPG3QK4G2ZQ2M1" className="btn btn-primary" target="_blank" rel="noreferrer">
               <MessageCircle size={20} />
               Chat on WhatsApp
             </a>
@@ -44,7 +41,6 @@ const Hero = () => {
           </div>
         </div>
       </div>
-
     </section>
   );
 };
