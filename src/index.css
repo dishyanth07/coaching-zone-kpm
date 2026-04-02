@@ -715,8 +715,7 @@ h1, h2, h3, h4 {
 }
 
 @media (max-width: 480px) {
-  .logo span { display: none; } /* Hide text logo on very small screens to keep UI clear */
-  .logo::after { content: 'CZ KPM'; font-size: 1rem; font-weight: 700; color: var(--primary); }
+  .logo span { font-size: 0.85rem; letter-spacing: -0.5px; }
   
   .stat-value { font-size: 2.2rem; }
   .hero h1 { font-size: 2.2rem; }
