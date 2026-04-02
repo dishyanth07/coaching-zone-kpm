@@ -411,15 +411,91 @@ h1, h2, h3, h4 {
   transform: rotateX(10deg) translateY(-20px);
 }
 
-/* Why Choose Us Update */
+/* Why Choose Us Update (Premium Grid) */
 .why-section {
   padding: 140px 0;
   background: #0d2425;
   color: white;
   border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  position: relative;
+  z-index: 10;
 }
 
-/* CTA Section Update */
+.why-content {
+  display: flex;
+  flex-direction: column;
+  gap: 6rem;
+}
+
+.why-content .text-side {
+  max-width: 800px;
+  text-align: left;
+}
+
+.why-content h2 {
+  font-size: 3.5rem;
+  color: white;
+  margin-bottom: 2rem;
+  line-height: 1.2;
+}
+
+.why-content p {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 700px;
+}
+
+.features-grid-why {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem;
+}
+
+.feature-item {
+  padding: 3rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-lg);
+  display: flex;
+  gap: 2rem;
+  transition: var(--transition-premium);
+}
+
+.feature-item:hover {
+  transform: translateY(-10px);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--secondary);
+}
+
+.feature-icon-box {
+  width: 64px;
+  height: 64px;
+  background: rgba(197, 160, 89, 0.1);
+  color: var(--secondary);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.feature-item:hover .feature-icon-box {
+  background: var(--secondary);
+  color: #0d2425;
+  box-shadow: 0 0 30px rgba(197, 160, 89, 0.4);
+}
+
+.feature-text h4 {
+  font-size: 1.4rem;
+  margin-bottom: 0.75rem;
+  color: white;
+}
+
+.feature-text p {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.6;
+}
 .cta-section {
   padding: 120px 0;
   background: #f8fafc;
