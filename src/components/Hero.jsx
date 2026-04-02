@@ -1,68 +1,139 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { ChevronRight, CalendarCheck, BookOpen, Award, GraduationCap, Zap } from 'lucide-react';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { ChevronRight, PlayCircle } from 'lucide-react';
 
-const FloatingIcon = ({ Icon, className, delay }) => (
+const Particle = ({ delay, duration, x, y, size }) => (
   <motion.div
-    initial={{ y: 0 }}
-    animate={{ y: [-15, 15, -15] }}
-    transition={{ duration: 6, delay, repeat: Infinity, ease: 'easeInOut' }}
-    className={`absolute hidden lg:flex items-center justify-center bg-white/80 backdrop-blur-md p-4 rounded-2xl shadow-[0_10px_40px_-10px_rgba(13,92,99,0.15)] border border-gray-100 ${className}`}
-  >
-    <Icon size={32} className="text-primary" />
-  </motion.div>
+    initial={{ opacity: 0, scale: 0 }}
+    animate={{ 
+      opacity: [0, 0.8, 0],
+      scale: [0, 1, 0.5],
+      y: [0, -100]
+    }}
+    transition={{ 
+      duration, 
+      delay, 
+      repeat: Infinity,
+      ease: "easeInOut"
+    }}
+    className="absolute bg-white rounded-full blur-[1px]"
+    style={{ left: x, bottom: y, width: size, height: size }}
+  />
 );
 
 const Hero = () => {
+  const containerRef = useRef(null);
+  const { scrollY } = useScroll();
+  
+  // Apple-style fade and scale out based on scroll depth
+  const scale = useTransform(scrollY, [0, 800], [1, 0.85]);
+  const opacity = useTransform(scrollY, [0, 600], [1, 0]);
+  const yOffset = useTransform(scrollY, [0, 800], [0, 150]);
+  const bgScale = useTransform(scrollY, [0, 1000], [1, 1.2]);
+
+  const headline = "Smarter Learning Starts Here";
+  
+  const letterVariants = {
+    hidden: { opacity: 0, y: 50, rotateX: -90 },
+    visible: { opacity: 1, y: 0, rotateX: 0, transition: { duration: 0.8, ease: [0.2, 0.65, 0.3, 0.9] } }
+  };
+
   return (
-    <section className="relative min-h-[95vh] flex items-center justify-center pt-24 overflow-hidden bg-gradient-to-br from-[#f8fafc] via-white to-[#f0f9f6]">
-      {/* Background Subtleties */}
-      <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[50%] bg-primary/5 rounded-full blur-[100px]" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[50%] bg-secondary/10 rounded-full blur-[100px]" />
-      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03]"></div>
+    <section ref={containerRef} className="relative h-[120vh] bg-[#0a0f12] overflow-hidden sticky top-0 -z-10">
+      
+      {/* Immersive Cinematic Background with Slow Zoom */}
+      <motion.div 
+        style={{ scale: bgScale }}
+        className="absolute inset-0 z-0 origin-center"
+      >
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0f2425]/40 via-[#0a0f12] to-[#0a0f12] z-10" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] bg-primary/30 blur-[150px] rounded-full mix-blend-screen" />
+        <div className="absolute top-1/4 right-1/4 w-[40%] h-[40%] bg-secondary/20 blur-[120px] rounded-full mix-blend-screen" />
+        
+        {/* Floating Particles */}
+        <Particle x="20%" y="10%" size={4} duration={4} delay={0} />
+        <Particle x="75%" y="30%" size={6} duration={5} delay={1} />
+        <Particle x="40%" y="20%" size={3} duration={6} delay={2} />
+        <Particle x="85%" y="15%" size={5} duration={4} delay={3} />
+        <Particle x="15%" y="40%" size={4} duration={7} delay={0.5} />
+      </motion.div>
 
-      {/* Floating Education Icons */}
-      <FloatingIcon Icon={BookOpen} className="top-[20%] left-[8%]" delay={0} />
-      <FloatingIcon Icon={GraduationCap} className="bottom-[25%] left-[12%]" delay={1.5} />
-      <FloatingIcon Icon={Award} className="top-[25%] right-[10%]" delay={0.7} />
-      <FloatingIcon Icon={Zap} className="bottom-[20%] right-[15%]" delay={2.2} />
-
-      <div className="container mx-auto px-6 relative z-10 text-center max-w-5xl">
+      {/* Content wrapper tied to scroll transforms */}
+      <motion.div 
+        style={{ scale, opacity, y: yOffset }}
+        className="relative z-20 h-screen flex flex-col items-center justify-center text-center px-6"
+      >
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, delay: 0.2 }}
+          className="mb-6 inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md"
         >
-          <span className="inline-block py-1.5 px-4 rounded-full bg-primary/10 text-primary font-bold tracking-wide text-[0.85rem] mb-6 border border-primary/20 shadow-sm">
-            Top-Rated Coaching Institute
-          </span>
-          
-          <h1 className="text-5xl md:text-7xl font-extrabold text-text-main leading-tight tracking-tight mb-8">
-            Upgrade Your Skills with <br className="hidden md:block"/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
-              Industry-Level Training
-            </span>
-          </h1>
-          
-          <p className="text-lg md:text-xl text-text-muted mb-10 max-w-3xl mx-auto leading-relaxed">
-            Tamil, English, Phonics, Abacus, Handwriting, and Educator Programs. 
-            Experience structured learning with complete student tracking for proven results.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href="https://wa.me/message/MPG3QK4G2ZQ2M1" className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 w-full sm:w-auto bg-gradient-to-r from-primary to-secondary text-white font-bold rounded-full overflow-hidden shadow-[0_10px_30px_-5px_rgba(13,92,99,0.3)] hover:scale-105 transition-all duration-300">
-              <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-[200%] group-hover:animate-[shimmer_2s_infinite]" />
-              <span className="relative z-10">Enroll Now</span>
-              <ChevronRight size={20} className="relative z-10 group-hover:translate-x-1 transition-transform" />
-            </a>
-            
-            <a href="tel:8248800704" className="inline-flex items-center justify-center gap-2 px-8 py-4 w-full sm:w-auto bg-white text-primary font-bold rounded-full border border-gray-200 shadow-sm hover:shadow-md hover:border-primary/30 hover:-translate-y-1 transition-all duration-300">
-              <CalendarCheck size={20} />
-              Book Free Demo
-            </a>
-          </div>
+          <span className="w-2 h-2 rounded-full bg-secondary animate-pulse" />
+          <span className="text-gray-300 text-sm font-semibold tracking-wider uppercase">The Complete Educational System</span>
         </motion.div>
-      </div>
+
+        <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold text-white leading-tight tracking-tighter mb-8 max-w-5xl" style={{ perspective: "1000px" }}>
+          {headline.split(" ").map((word, index) => (
+            <span key={index} className="inline-block whitespace-nowrap mr-4 overflow-hidden">
+              {word.split("").map((char, charIndex) => (
+                <motion.span
+                  key={charIndex}
+                  variants={letterVariants}
+                  initial="hidden"
+                  animate="visible"
+                  transition={{ delay: (index * 0.1) + (charIndex * 0.03) + 0.5 }}
+                  className="inline-block"
+                >
+                  {char}
+                </motion.span>
+              ))}
+            </span>
+          ))}
+        </h1>
+
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.5, duration: 1 }}
+          className="text-xl md:text-2xl text-gray-400 max-w-3xl font-medium leading-relaxed mb-12"
+        >
+          Master <span className="text-white">Tamil, English, Phonics, Abacus, Handwriting,</span> and <span className="text-white">Spoken English</span>.
+        </motion.p>
+
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.8, duration: 1 }}
+          className="flex flex-col sm:flex-row items-center gap-6"
+        >
+          <a href="#courses" className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-[#0a0f12] font-bold rounded-full overflow-hidden hover:scale-105 transition-all duration-300">
+            <span className="relative z-10">Explore Path</span>
+            <ChevronRight size={20} className="relative z-10 group-hover:translate-x-1 transition-transform" />
+          </a>
+          <a href="#demo" className="inline-flex items-center gap-2 text-white font-semibold hover:text-secondary transition-colors duration-300">
+            <PlayCircle size={24} />
+            See How It Works
+          </a>
+        </motion.div>
+      </motion.div>
+      
+      {/* Scroll indicator */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2.5, duration: 1 }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20"
+      >
+        <span className="text-xs text-gray-500 uppercase tracking-widest">Scroll</span>
+        <div className="w-[1px] h-12 bg-white/20 overflow-hidden relative">
+          <motion.div 
+            animate={{ y: [0, 48] }} 
+            transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+            className="absolute top-0 left-0 w-full h-1/2 bg-white"
+          />
+        </div>
+      </motion.div>
     </section>
   );
 };

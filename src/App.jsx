@@ -1,30 +1,27 @@
 import React from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import ScrollStory from './components/ScrollStory';
 import TrustBadges from './components/TrustBadges';
 import TrustStats from './components/TrustStats';
-import CourseGrid from './components/CourseGrid';
 import MasterPrograms from './components/MasterPrograms';
 import SystemPreview from './components/SystemPreview';
 import WhyChooseUs from './components/WhyChooseUs';
 import Testimonials from './components/Testimonials';
 import CTASection from './components/CTASection';
 import Footer from './components/Footer';
-import { useScrollReveal } from './hooks/useScrollReveal';
 
 function App() {
-  useScrollReveal();
 
   return (
-    <div className="font-inter bg-white text-[#0f2425]">
+    <div className="font-inter bg-[#0a0f12] text-white">
       <Navbar />
       <Hero />
-      <TrustBadges />
-      <TrustStats />
-      <CourseGrid />
-      <MasterPrograms />
-      <SystemPreview />
+      <ScrollStory />
       <WhyChooseUs />
+      <SystemPreview />
+      <TrustStats />
+      <MasterPrograms />
       <Testimonials />
       <CTASection />
       <Footer />
